@@ -9,7 +9,7 @@ const WeatherSearch = () => {
 
   const handleSearch = async () => {
     const apiKey = process.env.REACT_APP_API_KEY;
-    const url = `http://openapi.seoul.go.kr:8088/${apiKey}/json/citydata/1/5/${selectedArea}`;
+    const url = `https://openapi.seoul.go.kr:8088/${apiKey}/json/citydata/1/5/${selectedArea}`;
     const response = await fetch(url);
     const data = await response.json();
     setWeather(data.CITYDATA.WEATHER_STTS[0]); // API 응답 구조에 따라 변경 필요
