@@ -21,14 +21,20 @@ const WeatherSearch = () => {
   // };
 
   const handleSearch = async () => {
-    // 프록시 서버를 통한 요청 URL 구성
     const url = `https://weathersearch.djagpdud125.workers.dev/?apiPath=citydata/1/5/${encodeURIComponent(
       selectedArea
     )}`;
-    const response = await fetch(url);
-    const data = await response.json();
-    setWeather(data.CITYDATA.WEATHER_STTS[0]); // API 응답 구조에 따라 변경 필요
-    console.log(data.CITYDATA.WEATHER_STTS[0]); // 찍어서 확인하기
+    try {
+      const response = await fetch(url);
+      if (!response.ok) {
+        throw new Error(`Network response was not ok, status: ${response.status}`);
+      }
+      const data = await response.json();
+      setWeather(data.CITYDATA.WEATHER_STTS[0]);
+      console.log(data.CITYDATA.WEATHER_STTS[0]);
+    } catch (error) {
+      console.error("Fetch error:", error.message);
+    }
   };
 
   return (
