@@ -7,9 +7,21 @@ const WeatherSearch = () => {
   const [selectedArea, setSelectedArea] = useState(areas[Object.keys(areas)[0]][0]); // 세부 지역 초기값 설정
   const [weather, setWeather] = useState(null);
 
+  // const handleSearch = async () => {
+  //   const apiKey = process.env.REACT_APP_API_KEY;
+  //   // const url = `http://openapi.seoul.go.kr:8088/${apiKey}/json/citydata/1/5/${selectedArea}`;
+  //   const url = `https://weathersearch.djagpdud125.workers.dev/?apiPath=citydata/1/5/${encodeURIComponent(
+  //     selectedArea
+  //   )}`;
+
+  //   const response = await fetch(url);
+  //   const data = await response.json();
+  //   setWeather(data.CITYDATA.WEATHER_STTS[0]); // API 응답 구조에 따라 변경 필요
+  //   console.log(data.CITYDATA.WEATHER_STTS[0]); // 찍어서 확인하기
+  // };
+
   const handleSearch = async () => {
-    const apiKey = process.env.REACT_APP_API_KEY;
-    // const url = `http://openapi.seoul.go.kr:8088/${apiKey}/json/citydata/1/5/${selectedArea}`;
+    // 프록시 서버를 통한 요청 URL 구성
     const url = `https://weathersearch.djagpdud125.workers.dev/?apiPath=citydata/1/5/${encodeURIComponent(
       selectedArea
     )}`;
